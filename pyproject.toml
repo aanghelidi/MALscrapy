@@ -3,7 +3,6 @@ profile = "black"
 known_third_party = ["scrapy"]
 
 [tool.mypy]
-# --strict
 disallow_any_generics = true
 disallow_subclassing_any = true
 disallow_untyped_calls = true
@@ -17,14 +16,3 @@ warn_unused_ignores = true
 warn_return_any = true
 implicit_reexport = false
 strict_equality = true
-# --strict end
-
-[[tool.mypy.overrides]]
-module = "fastapi.concurrency"
-warn_unused_ignores = false
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = "fastapi.tests.*"
-ignore_missing_imports = true
-check_untyped_defs = true
