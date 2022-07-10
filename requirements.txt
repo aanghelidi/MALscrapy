@@ -1,2 +1,2 @@
-ipython~=8.4.0
+ipython~=7.34.0
 scrapy~=2.6.0
