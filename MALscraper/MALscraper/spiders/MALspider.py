@@ -1,9 +1,10 @@
 from typing import ClassVar
 
 from scrapy.http.response import Response
-from scrapy.item import Item
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
+
+from MALscraper.MALscraper.items import AnimeItem
 
 
 class MALSpider(CrawlSpider):
@@ -13,9 +14,15 @@ class MALSpider(CrawlSpider):
 
     rules = (Rule(LinkExtractor(allow=r"anime\/\d*"), callback="parse_anime"),)
 
-    def parse_anime(self, response: Response) -> Item:
-        anime: dict[str, int | str] = {}
-        # item['domain_id'] = response.xpath('//input[@id="sid"]/@value').get()
-        # item['name'] = response.xpath('//div[@id="name"]').get()
-        # item['description'] = response.xpath('//div[@id="description"]').get()
+    def parse_anime(self, response: Response) -> AnimeItem:
+        anime: AnimeItem = AnimeItem()
+        anime.title = response.xpath('//div[@itemprop="name"]/h1/strong/text()').get()
+        anime.jtitle = (
+            response.xpath(
+                'normalize-space(string(//span[@class="dark_text"]/text()[contains(.,"Japanese")]/parent::*/parent::*))',
+            )
+            .get()
+            .split(":")[-1]
+            .strip()
+        )
         return anime
