@@ -43,3 +43,7 @@ repos:
     rev: v0.961
     hooks:
     -   id: mypy
+ci:
+  autofix_commit_msg: |
+      :fireworks: [pre-commit.ci] auto fixes from pre-commit.com hooks
+  autoupdate_commit_msg: ':rocket: [pre-commit.ci] pre-commit autoupdate'
