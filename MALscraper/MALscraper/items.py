@@ -4,9 +4,10 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass
-class MalscraperItem:
-    pass
+class AnimeItem:
+    title: str | None = field(default=None)
+    jtitle: str | None = field(default=None)
