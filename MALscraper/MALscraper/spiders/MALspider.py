@@ -4,7 +4,7 @@ from scrapy.http.response import Response
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 
-from MALscraper.MALscraper.items import AnimeItem
+from ..items import AnimeItem
 
 
 class MALSpider(CrawlSpider):
