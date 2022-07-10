@@ -2,10 +2,10 @@ name: MALScrapy application
 
 on:
   push:
+  pull_request:
     branches:
       - master
       - develop
-  pull_request:
     types:
       - opened
       - synchronize
