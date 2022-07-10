@@ -2,8 +2,9 @@ name: MALScrapy application
 
 on:
   push:
-    paths:
-      - '**.py'
+    branches:
+      - master
+      - develop
   pull_request:
     types:
       - opened
