@@ -11,8 +11,6 @@ on:
       - synchronize
       - reopened
       - ready_for_review
-    paths:
-      - '**.py'
 jobs:
   test:
     runs-on: ubuntu-latest
