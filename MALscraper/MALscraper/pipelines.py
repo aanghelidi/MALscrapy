@@ -5,9 +5,12 @@
 
 
 # useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
+# from itemadapter import ItemAdapter
+
+from scrapy.item import Item
+from scrapy.spiders import Spider
 
 
 class MalscraperPipeline:
-    def process_item(self, item, spider):
+    def process_item(self, item: Item, spider: Spider) -> Item:
         return item
