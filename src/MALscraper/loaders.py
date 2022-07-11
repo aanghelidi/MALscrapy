@@ -98,3 +98,7 @@ class AnimeLoader(ItemLoader):
         parse_int_or_value,
     )
     ranked_out = TakeFirst()
+
+    # How to preprocess popularity field
+    popularity_in = MapCompose(str.strip, get_field, str.strip)
+    popularity_out = TakeFirst()
