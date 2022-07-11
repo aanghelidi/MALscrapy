@@ -1,7 +1,12 @@
+from functools import partial
+
 from itemloaders.processors import Identity, MapCompose, TakeFirst
 from scrapy.loader import ItemLoader
 
 from .utils.loaders import get_last_split_value
+
+# Custom functions
+get_jtitle = partial(get_last_split_value, sep=":")
 
 
 class AnimeLoader(ItemLoader):
@@ -14,5 +19,5 @@ class AnimeLoader(ItemLoader):
     title_out = TakeFirst()
 
     # How to preprocess jtitle field
-    jtitle_in = MapCompose(str.strip, get_last_split_value, str.strip)
+    jtitle_in = MapCompose(str.strip, get_jtitle, str.strip)
     jtitle_out = TakeFirst()
