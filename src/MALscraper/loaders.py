@@ -1,6 +1,6 @@
 from functools import partial
 
-from itemloaders.processors import Identity, MapCompose, TakeFirst
+from itemloaders.processors import Identity, Join, MapCompose, TakeFirst
 from scrapy.loader import ItemLoader
 
 from .utils.loaders import get_last_split_value
@@ -43,8 +43,12 @@ class AnimeLoader(ItemLoader):
     premiered_out = TakeFirst()
 
     # How to preprocess broadcast field
-    broadcast_in = MapCompose(str.strip, get_field, str.strip)
-    broadcast_out = TakeFirst()
+    broadcast_in = MapCompose(
+        str.strip,
+        str.split,
+        lambda v: v if "Broadcast" not in v else None,
+    )
+    broadcast_out = Join()
 
     # How to preprocess producers field
     producers_in = MapCompose(str.strip, str.title)
