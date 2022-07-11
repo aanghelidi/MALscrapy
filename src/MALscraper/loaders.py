@@ -86,3 +86,7 @@ class AnimeLoader(ItemLoader):
     # How to preprocess rating field
     rating_in = MapCompose(str.strip, get_field, str.strip)
     rating_out = TakeFirst()
+
+    # How to preprocess score field
+    score_in = MapCompose(str.strip, float)
+    score_out = TakeFirst()

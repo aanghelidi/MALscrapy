@@ -24,3 +24,4 @@ class AnimeItem(Item):
     genres = Field()
     duration = Field()
     rating = Field()
+    score = Field()
