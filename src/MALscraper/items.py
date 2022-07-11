@@ -13,3 +13,4 @@ class AnimeItem(Item):
     anime_type = Field()
     n_episodes = Field()
     status = Field()
+    aired = Field()
