@@ -22,3 +22,4 @@ class AnimeItem(Item):
     studios = Field()
     source = Field()
     genres = Field()
+    duration = Field()

@@ -67,5 +67,9 @@ class MALSpider(CrawlSpider):
             "genres",
             '//span[@class="dark_text"]/text()[contains(.,"Genres")]/parent::*/parent::*/a/text()',
         )
+        loader.add_xpath(
+            "duration",
+            '(string(//span[@class="dark_text"]/text()[contains(.,"Duration")]/parent::*/parent::*))',
+        )
         anime_item: AnimeItem = loader.load_item()
         return anime_item

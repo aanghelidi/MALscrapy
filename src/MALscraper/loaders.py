@@ -78,3 +78,7 @@ class AnimeLoader(ItemLoader):
     # How to preprocess genres field
     genres_in = MapCompose(str.strip, str.title)
     genres_out = Identity()
+
+    # How to preprocess duration field
+    duration_in = MapCompose(str.strip, get_field, str.strip)
+    duration_out = TakeFirst()
