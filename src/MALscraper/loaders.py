@@ -14,6 +14,13 @@ class AnimeLoader(ItemLoader):
     # By default returns the raw data
     default_output_processor = Identity()
 
+    # How to preprocess synopsis field
+    synopsis_in = MapCompose(
+        str.strip,
+        lambda v: v if v or "Written" not in v else None,
+    )
+    synopsis_out = Join()
+
     # How to preprocess title field
     title_in = MapCompose(str.strip, str.title)
     title_out = TakeFirst()
