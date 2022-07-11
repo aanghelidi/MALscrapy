@@ -70,3 +70,7 @@ class AnimeLoader(ItemLoader):
     # How to preprocess studios field
     studios_in = MapCompose(str.strip, str.title)
     studios_out = Identity()
+
+    # How to preprocess source field
+    source_in = MapCompose(str.strip, get_field, str.strip)
+    source_out = TakeFirst()

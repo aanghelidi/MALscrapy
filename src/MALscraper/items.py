@@ -20,3 +20,4 @@ class AnimeItem(Item):
     producers = Field()
     licensors = Field()
     studios = Field()
+    source = Field()
