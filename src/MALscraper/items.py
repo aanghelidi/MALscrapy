@@ -21,3 +21,4 @@ class AnimeItem(Item):
     licensors = Field()
     studios = Field()
     source = Field()
+    genres = Field()
