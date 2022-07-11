@@ -37,3 +37,7 @@ class AnimeLoader(ItemLoader):
     # How to preprocess aired field
     aired_in = MapCompose(str.strip, get_field, str.strip)
     aired_out = TakeFirst()
+
+    # How to preprocess premiered field
+    premiered_in = MapCompose(str.strip, get_field, str.strip)
+    premiered_out = TakeFirst()
