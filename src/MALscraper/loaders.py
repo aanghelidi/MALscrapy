@@ -3,11 +3,10 @@ from functools import partial
 from itemloaders.processors import Identity, Join, MapCompose, TakeFirst
 from scrapy.loader import ItemLoader
 
-from .utils.loaders import get_last_split_value, parse_int_or_value
+from .utils.loaders import get_last_split_value, parse_int_or_value, remove_comma
 
 # Custom functions
 get_field = partial(get_last_split_value, sep=":")
-remove_comma = partial(str.replace, ",", "")
 
 
 class AnimeLoader(ItemLoader):
@@ -101,7 +100,13 @@ class AnimeLoader(ItemLoader):
     ranked_out = TakeFirst()
 
     # How to preprocess popularity field
-    popularity_in = MapCompose(str.strip, get_field, str.strip)
+    popularity_in = MapCompose(
+        str.strip,
+        get_field,
+        str.strip,
+        lambda v: v[1:] if v else None,
+        parse_int_or_value,
+    )
     popularity_out = TakeFirst()
 
     # How to preprocess members field

@@ -11,3 +11,7 @@ def parse_int_or_value(v: str) -> Union[str, int]:
     except ValueError as e:
         print(e)
     return v
+
+
+def remove_comma(s: str) -> str:
+    return s.replace(",", "")
