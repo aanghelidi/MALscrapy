@@ -29,3 +29,7 @@ class AnimeLoader(ItemLoader):
     # How to preprocess n_episodes field
     n_episodes_in = MapCompose(str.strip, get_field, str.strip)
     n_episodes_out = TakeFirst()
+
+    # How to preprocess status field
+    status_in = MapCompose(str.strip, get_field, str.strip)
+    status_out = TakeFirst()
