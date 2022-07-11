@@ -27,3 +27,4 @@ class AnimeItem(Item):
     score = Field()
     ranked = Field()
     popularity = Field()
+    members = Field()

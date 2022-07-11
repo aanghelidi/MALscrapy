@@ -102,3 +102,7 @@ class AnimeLoader(ItemLoader):
     # How to preprocess popularity field
     popularity_in = MapCompose(str.strip, get_field, str.strip)
     popularity_out = TakeFirst()
+
+    # How to preprocess members field
+    members_in = MapCompose(str.strip, get_field, str.strip)
+    members_out = TakeFirst()
