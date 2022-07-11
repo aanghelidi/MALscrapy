@@ -47,5 +47,5 @@ class AnimeLoader(ItemLoader):
     broadcast_out = TakeFirst()
 
     # How to preprocess producers field
-    broadcast_in = MapCompose(str.strip, str.title)
-    broadcast_out = Identity()
+    producers_in = MapCompose(str.strip, str.title)
+    producers_out = Identity()
