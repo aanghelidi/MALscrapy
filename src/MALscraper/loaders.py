@@ -14,5 +14,5 @@ class AnimeLoader(ItemLoader):
     title_out = TakeFirst()
 
     # How to preprocess jtitle field
-    title_in = MapCompose(str.strip, get_last_split_value, str.strip)
-    title_out = TakeFirst()
+    jtitle_in = MapCompose(str.strip, get_last_split_value, str.strip)
+    jtitle_out = TakeFirst()
