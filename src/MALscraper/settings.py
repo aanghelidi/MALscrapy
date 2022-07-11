@@ -51,14 +51,9 @@ COOKIES_ENABLED = False
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 
-# Enable rotation of proxies
-PROXY_POOL_ENABLED = True
-
 DOWNLOADER_MIDDLEWARES = {
     "scrapy.downloadermiddlewares.useragent.UserAgentMiddleware": None,
     "scrapy_user_agents.middlewares.RandomUserAgentMiddleware": 400,
-    "scrapy_proxy_pool.middlewares.ProxyPoolMiddleware": 610,
-    "scrapy_proxy_pool.middlewares.BanDetectionMiddleware": 620,
 }
 
 # Enable or disable extensions
