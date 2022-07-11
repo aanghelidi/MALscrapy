@@ -18,6 +18,7 @@ class MALSpider(CrawlSpider):
     def parse_anime(self, response: Response) -> AnimeItem:
         loader = AnimeLoader(item=AnimeItem(), response=response)
         loader.add_xpath("title", '//div[@itemprop="name"]/h1/strong/text()')
+        loader.add_xpath("synopsis", '//p[@itemprop="description"]/text()')
         loader.add_xpath(
             "jtitle",
             'string(//span[@class="dark_text"]/text()[contains(.,"Japanese")]/parent::*/parent::*)',
