@@ -18,3 +18,4 @@ class AnimeItem(Item):
     premiered = Field()
     broadcast = Field()
     producers = Field()
+    licensors = Field()
