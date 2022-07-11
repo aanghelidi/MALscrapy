@@ -25,3 +25,4 @@ class AnimeItem(Item):
     duration = Field()
     rating = Field()
     score = Field()
+    ranked = Field()

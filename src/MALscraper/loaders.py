@@ -90,3 +90,11 @@ class AnimeLoader(ItemLoader):
     # How to preprocess score field
     score_in = MapCompose(str.strip, float)
     score_out = TakeFirst()
+
+    # How to preprocess ranked field
+    ranked_in = MapCompose(
+        str.strip,
+        lambda v: v[1:] if v else None,
+        parse_int_or_value,
+    )
+    ranked_out = TakeFirst()
