@@ -7,6 +7,7 @@ from .utils.loaders import get_last_split_value, parse_int_or_value
 
 # Custom functions
 get_field = partial(get_last_split_value, sep=":")
+remove_comma = partial(str.replace, old=",", new="")
 
 
 class AnimeLoader(ItemLoader):
@@ -104,5 +105,11 @@ class AnimeLoader(ItemLoader):
     popularity_out = TakeFirst()
 
     # How to preprocess members field
-    members_in = MapCompose(str.strip, get_field, str.strip)
+    members_in = MapCompose(
+        str.strip,
+        get_field,
+        str.strip,
+        remove_comma,
+        parse_int_or_value,
+    )
     members_out = TakeFirst()
