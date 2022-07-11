@@ -3,7 +3,7 @@ from functools import partial
 from itemloaders.processors import Identity, Join, MapCompose, TakeFirst
 from scrapy.loader import ItemLoader
 
-from .utils.loaders import get_last_split_value
+from .utils.loaders import get_last_split_value, parse_int_or_value
 
 # Custom functions
 get_field = partial(get_last_split_value, sep=":")
@@ -36,7 +36,7 @@ class AnimeLoader(ItemLoader):
     anime_type_out = TakeFirst()
 
     # How to preprocess n_episodes field
-    n_episodes_in = MapCompose(str.strip, get_field, str.strip, int)
+    n_episodes_in = MapCompose(str.strip, get_field, str.strip, parse_int_or_value)
     n_episodes_out = TakeFirst()
 
     # How to preprocess status field
