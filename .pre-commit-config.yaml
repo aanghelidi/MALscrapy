@@ -9,7 +9,6 @@ repos:
     -   id: check-yaml
     -   id: check-toml
     -   id: debug-statements
-    -   id: name-tests-test
     -   id: requirements-txt-fixer
 -   repo: https://github.com/pycqa/isort
     rev: 5.10.1
@@ -43,6 +42,7 @@ repos:
     rev: v0.961
     hooks:
     -   id: mypy
+        exclude: src/MALscraper/tests/test.*
 ci:
   autofix_commit_msg: |
       :fireworks: [pre-commit.ci] auto fixes from pre-commit.com hooks
