@@ -33,3 +33,7 @@ class AnimeLoader(ItemLoader):
     # How to preprocess status field
     status_in = MapCompose(str.strip, get_field, str.strip)
     status_out = TakeFirst()
+
+    # How to preprocess aired field
+    aired_in = MapCompose(str.strip, get_field, str.strip)
+    aired_out = TakeFirst()
