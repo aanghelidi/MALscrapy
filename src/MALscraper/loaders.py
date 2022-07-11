@@ -66,3 +66,7 @@ class AnimeLoader(ItemLoader):
     # How to preprocess licensors field
     licensors_in = MapCompose(str.strip, str.title)
     licensors_out = Identity()
+
+    # How to preprocess studios field
+    studios_in = MapCompose(str.strip, str.title)
+    studios_out = Identity()
