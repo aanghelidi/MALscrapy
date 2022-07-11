@@ -91,5 +91,9 @@ class MALSpider(CrawlSpider):
             "members",
             'string(//span[@class="dark_text"]/text()[contains(.,"Members")]/parent::*/parent::*)',
         )
+        loader.add_xpath(
+            "favorites",
+            'string(//span[@class="dark_text"]/text()[contains(.,"Favorites")]/parent::*/parent::*)',
+        )
         anime_item: AnimeItem = loader.load_item()
         return anime_item

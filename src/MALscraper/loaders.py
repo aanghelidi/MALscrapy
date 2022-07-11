@@ -113,3 +113,13 @@ class AnimeLoader(ItemLoader):
         parse_int_or_value,
     )
     members_out = TakeFirst()
+
+    # How to preprocess favorites field
+    favorites_in = MapCompose(
+        str.strip,
+        get_field,
+        str.strip,
+        remove_comma,
+        parse_int_or_value,
+    )
+    favorites_out = TakeFirst()
