@@ -17,7 +17,9 @@ class AnimeLoader(ItemLoader):
     # How to preprocess synopsis field
     synopsis_in = MapCompose(
         str.strip,
-        lambda v: v if v or "Written" not in v else None,
+        lambda v: v if v else None,
+        lambda v: v if "Written" not in v else None,
+        lambda v: v if "Source" not in v else None,
     )
     synopsis_out = Join()
 
