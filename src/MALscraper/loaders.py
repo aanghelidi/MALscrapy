@@ -10,7 +10,7 @@ class AnimeLoader(ItemLoader):
     default_output_processor = Identity()
 
     # How to preprocess title field
-    title_in = MapCompose(str.strip, str.capitalize)
+    title_in = MapCompose(str.strip, str.title)
     title_out = TakeFirst()
 
     # How to preprocess jtitle field
