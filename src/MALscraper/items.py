@@ -10,3 +10,4 @@ from scrapy import Field, Item
 class AnimeItem(Item):
     title = Field()
     jtitle = Field()
+    anime_type = Field()
