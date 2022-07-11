@@ -26,5 +26,9 @@ class MALSpider(CrawlSpider):
             "anime_type",
             '(string(//span[@class="dark_text"]/text()[contains(.,"Type")]/parent::*/parent::*))',
         )
+        loader.add_xpath(
+            "n_episodes",
+            '(string(//span[@class="dark_text"]/text()[contains(.,"Episodes")]/parent::*/parent::*))',
+        )
         anime_item: AnimeItem = loader.load_item()
         return anime_item
