@@ -22,5 +22,9 @@ class MALSpider(CrawlSpider):
             "jtitle",
             'string(//span[@class="dark_text"]/text()[contains(.,"Japanese")]/parent::*/parent::*)',
         )
+        loader.add_xpath(
+            "anime_type",
+            '(string(//span[@class="dark_text"]/text()[contains(.,"Type")]/parent::*/parent::*))',
+        )
         anime_item: AnimeItem = loader.load_item()
         return anime_item
