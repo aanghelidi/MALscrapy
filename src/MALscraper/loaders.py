@@ -7,7 +7,7 @@ from .utils.loaders import get_last_split_value, parse_int_or_value
 
 # Custom functions
 get_field = partial(get_last_split_value, sep=":")
-remove_comma = partial(str.replace, old=",", new="")
+remove_comma = partial(str.replace, ",", "")
 
 
 class AnimeLoader(ItemLoader):
