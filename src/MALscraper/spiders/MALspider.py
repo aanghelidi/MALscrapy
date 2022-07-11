@@ -1,3 +1,4 @@
+import string
 from typing import ClassVar, List
 
 from scrapy.http.response import Response
@@ -12,7 +13,10 @@ class MALSpider(CrawlSpider):
 
     name: ClassVar[str] = "MALspider"
     allowed_domains: ClassVar[List[str]] = ["myanimelist.net"]
-    start_urls: ClassVar[List[str]] = ["https://myanimelist.net/anime.php?letter=A"]
+    start_urls: ClassVar[List[str]] = [
+        "https://myanimelist.net/anime.php?letter=" + letter
+        for letter in "." + string.ascii_uppercase
+    ]
     rules = (
         # Match animes links and parse them
         Rule(LinkExtractor(allow=r"anime\/\d*"), callback="parse_anime"),
