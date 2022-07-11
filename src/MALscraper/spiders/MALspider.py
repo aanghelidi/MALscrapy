@@ -38,5 +38,9 @@ class MALSpider(CrawlSpider):
             "aired",
             '(string(//span[@class="dark_text"]/text()[contains(.,"Aired")]/parent::*/parent::*))',
         )
+        loader.add_xpath(
+            "premiered",
+            '(string(//span[@class="dark_text"]/text()[contains(.,"Premiered")]/parent::*/parent::*))',
+        )
         anime_item: AnimeItem = loader.load_item()
         return anime_item
