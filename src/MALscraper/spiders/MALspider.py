@@ -13,7 +13,12 @@ class MALSpider(CrawlSpider):
     name: ClassVar[str] = "MALspider"
     allowed_domains: ClassVar[List[str]] = ["myanimelist.net"]
     start_urls: ClassVar[List[str]] = ["https://myanimelist.net/anime.php?letter=A"]
-    rules = (Rule(LinkExtractor(allow=r"anime\/\d*"), callback="parse_anime"),)
+    rules = (
+        # Match animes links and parse them
+        Rule(LinkExtractor(allow=r"anime\/\d*"), callback="parse_anime"),
+        # Match next pages links
+        Rule(LinkExtractor(allow=r"[A-Z\.]\&show"), callback=None),
+    )
 
     def parse_anime(self, response: Response) -> AnimeItem:
         loader = AnimeLoader(item=AnimeItem(), response=response)
