@@ -77,6 +77,14 @@ class MALSpider(CrawlSpider):
             '//span[@class="dark_text"]/text()[contains(.,"Genres")]/parent::*/parent::*/a/text()',
         )
         loader.add_xpath(
+            "themes",
+            '//span[@class="dark_text"]/text()[contains(.,"Themes")]/parent::*/parent::*/a/text()',
+        )
+        loader.add_xpath(
+            "demographic",
+            '//span[@class="dark_text"]/text()[contains(.,"Demographic")]/parent::*/parent::*/a/text()',
+        )
+        loader.add_xpath(
             "duration",
             '(string(//span[@class="dark_text"]/text()[contains(.,"Duration")]/parent::*/parent::*))',
         )
