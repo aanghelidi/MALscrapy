@@ -21,7 +21,7 @@ addopts = ["--strict-markers",
         "--strict-config",
         "-ra"
         ]
-testpaths = "src/MALscraper/tests"
+testpaths = "app/MALscraper/tests"
 markers = ["smoke:subset of tests",
            "exception:check for expected exceptions"
 ]

@@ -30,3 +30,23 @@ jobs:
       run: pip install -r requirements-dev.txt
     - name: Run tests
       run: pytest -vvv
+    - name: Build image from Dockerfile
+      run: |
+        docker build -t malscrapy:${{ github.sha }} .
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: 'malscrapy:${{ github.sha }}'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
+    - name: Run Trivy vulnerability scanner in repo mode
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        exit-code: '1'
+        ignore-unfixed: true
+        format: 'table'
+        severity: 'CRITICAL,HIGH'
