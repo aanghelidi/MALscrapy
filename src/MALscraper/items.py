@@ -9,6 +9,9 @@ from scrapy import Field, Item
 
 class AnimeItem(Item):
 
+    # Meta section
+    url = Field()
+
     # Information section
     synopsis = Field()
     title = Field()
