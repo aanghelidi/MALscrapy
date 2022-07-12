@@ -32,11 +32,11 @@ jobs:
       run: pytest -vvv
     - name: Build image from Dockerfile
       run: |
-        docker build -t MALscraper:${{ github.sha }} .
+        docker build -t malscrapy:${{ github.sha }} .
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: 'MALscraper:${{ github.sha }}'
+        image-ref: 'malscrapy:${{ github.sha }}'
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
