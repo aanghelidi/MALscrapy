@@ -49,12 +49,14 @@ WORKDIR $APP_USER_HOME
 RUN mkdir -p app/MALscraper
 COPY app/scrapy.cfg app/
 COPY app/MALscraper app/MALscraper
-RUN find app/ -name "__pycache*" | xargs rm -rf
 
 # Change ownership
 USER root
 RUN chown -R $APP_USER:users app/
 
+
+USER $APP_USER
+RUN find app/ -name "__pycache*" | xargs rm -rf
 # Cd into app directory
 WORKDIR app
 
