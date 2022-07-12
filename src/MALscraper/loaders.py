@@ -14,6 +14,12 @@ class AnimeLoader(ItemLoader):
     # By default returns the raw data
     default_output_processor = Identity()
 
+    # How to preprocess url field
+    url_in = MapCompose(
+        str.strip,
+    )
+    url_out = TakeFirst()
+
     # How to preprocess synopsis field
     synopsis_in = MapCompose(
         str.strip,
@@ -78,6 +84,14 @@ class AnimeLoader(ItemLoader):
     # How to preprocess genres field
     genres_in = MapCompose(str.strip, str.title)
     genres_out = Identity()
+
+    # How to preprocess themes field
+    themes_in = MapCompose(str.strip, str.title)
+    themes_out = Identity()
+
+    # How to preprocess demographic field
+    demographic_in = MapCompose(str.strip, str.title)
+    demographic_out = Identity()
 
     # How to preprocess duration field
     duration_in = MapCompose(str.strip, get_field, str.strip)

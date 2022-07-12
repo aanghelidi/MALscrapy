@@ -1,5 +1,5 @@
-import string
 from typing import ClassVar, List
+from urllib.parse import urljoin
 
 from scrapy.http.response import Response
 from scrapy.linkextractors import LinkExtractor
@@ -13,19 +13,24 @@ class MALSpider(CrawlSpider):
 
     name: ClassVar[str] = "MALspider"
     allowed_domains: ClassVar[List[str]] = ["myanimelist.net"]
-    start_urls: ClassVar[List[str]] = [
-        "https://myanimelist.net/anime.php?letter=" + letter
-        for letter in "." + string.ascii_uppercase
-    ]
+    start_urls: ClassVar[List[str]] = ["https://myanimelist.net/topanime.php"]
     rules = (
         # Match animes links and parse them
         Rule(LinkExtractor(allow=r"anime\/\d*"), callback="parse_anime"),
         # Match next pages links
-        Rule(LinkExtractor(allow=r"[A-Z\.]\&show"), callback=None),
+        Rule(
+            LinkExtractor(allow=r"\?limit=\d+"),
+            callback=None,
+            process_value=lambda link: urljoin(
+                "https://myanimelist.net/topanime.php",
+                link,
+            ),
+        ),
     )
 
     def parse_anime(self, response: Response) -> AnimeItem:
         loader = AnimeLoader(item=AnimeItem(), response=response)
+        loader.add_value("url", response.url)
         loader.add_xpath("title", '//div[@itemprop="name"]/h1/strong/text()')
         loader.add_xpath("synopsis", '//p[@itemprop="description"]/text()')
         loader.add_xpath(
@@ -75,6 +80,14 @@ class MALSpider(CrawlSpider):
         loader.add_xpath(
             "genres",
             '//span[@class="dark_text"]/text()[contains(.,"Genres")]/parent::*/parent::*/a/text()',
+        )
+        loader.add_xpath(
+            "themes",
+            '//span[@class="dark_text"]/text()[contains(.,"Themes")]/parent::*/parent::*/a/text()',
+        )
+        loader.add_xpath(
+            "demographic",
+            '//span[@class="dark_text"]/text()[contains(.,"Demographic")]/parent::*/parent::*/a/text()',
         )
         loader.add_xpath(
             "duration",

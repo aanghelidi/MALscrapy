@@ -8,6 +8,11 @@ from scrapy import Field, Item
 
 
 class AnimeItem(Item):
+
+    # Meta section
+    url = Field()
+
+    # Information section
     synopsis = Field()
     title = Field()
     jtitle = Field()
@@ -22,8 +27,12 @@ class AnimeItem(Item):
     studios = Field()
     source = Field()
     genres = Field()
+    themes = Field()
+    demographic = Field()
     duration = Field()
     rating = Field()
+
+    # Statistics section
     score = Field()
     ranked = Field()
     popularity = Field()
