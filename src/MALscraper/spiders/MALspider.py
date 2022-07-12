@@ -1,4 +1,5 @@
 from typing import ClassVar, List
+from urllib.parse import urljoin
 
 from scrapy.http.response import Response
 from scrapy.linkextractors import LinkExtractor
@@ -20,12 +21,16 @@ class MALSpider(CrawlSpider):
         Rule(
             LinkExtractor(allow=r"\?limit=\d+"),
             callback=None,
-            process_value=lambda link: "https://myanimelist.net/topanime.php" + link,
+            process_value=lambda link: urljoin(
+                "https://myanimelist.net/topanime.php",
+                link,
+            ),
         ),
     )
 
     def parse_anime(self, response: Response) -> AnimeItem:
         loader = AnimeLoader(item=AnimeItem(), response=response)
+        loader.add_value("url", response.url)
         loader.add_xpath("title", '//div[@itemprop="name"]/h1/strong/text()')
         loader.add_xpath("synopsis", '//p[@itemprop="description"]/text()')
         loader.add_xpath(
