@@ -19,7 +19,7 @@ class MALSpider(CrawlSpider):
         Rule(LinkExtractor(allow=r"anime\/\d*"), callback="parse_anime"),
         # Match next pages links
         Rule(
-            LinkExtractor(allow=r"\?limit=\d+"),
+            LinkExtractor(allow=r"\?limit=\d*"),
             callback=None,
             process_links=lambda link: urljoin(
                 "https://myanimelist.net/topanime.php",
