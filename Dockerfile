@@ -64,5 +64,5 @@ WORKDIR app
 COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-# Use scrapyd
-ENTRYPOINT ["scrapyd"]
+# Use scrapy
+ENTRYPOINT ["bash"]
