@@ -1,5 +1,5 @@
+import string
 from typing import ClassVar, List
-from urllib.parse import urljoin
 
 from scrapy.http.response import Response
 from scrapy.linkextractors import LinkExtractor
@@ -13,19 +13,15 @@ class MALSpider(CrawlSpider):
 
     name: ClassVar[str] = "MALspider"
     allowed_domains: ClassVar[List[str]] = ["myanimelist.net"]
-    start_urls: ClassVar[List[str]] = ["https://myanimelist.net/topanime.php"]
+    start_urls: ClassVar[List[str]] = [
+        "https://myanimelist.net/anime.php?letter=" + letter
+        for letter in "." + string.ascii_uppercase
+    ]
     rules = (
         # Match animes links and parse them
         Rule(LinkExtractor(allow=r"anime\/\d*"), callback="parse_anime"),
         # Match next pages links
-        Rule(
-            LinkExtractor(allow=r"\?limit=\d*"),
-            callback=None,
-            process_links=lambda link: urljoin(
-                "https://myanimelist.net/topanime.php",
-                link,
-            ),
-        ),
+        Rule(LinkExtractor(allow=r"[A-Z\.]\&show"), callback=None),
     )
 
     def parse_anime(self, response: Response) -> AnimeItem:
