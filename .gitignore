@@ -151,3 +151,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Exclude postges password file
+postgres_db_password.txt
