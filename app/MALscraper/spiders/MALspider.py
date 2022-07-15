@@ -21,7 +21,7 @@ class MALSpider(CrawlSpider):
         Rule(
             LinkExtractor(allow=r"\?limit=\d+"),
             callback=None,
-            process_value=lambda link: urljoin(
+            process_links=lambda link: urljoin(
                 "https://myanimelist.net/topanime.php",
                 link,
             ),
