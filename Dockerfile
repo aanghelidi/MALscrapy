@@ -65,7 +65,4 @@ COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 # Use scrapy
-ENTRYPOINT ["scrapy"]
-
-# CMD to override, display help by default
-CMD ["-h"]
+ENTRYPOINT ["bash"]
