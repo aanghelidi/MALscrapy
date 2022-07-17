@@ -5,7 +5,7 @@ services:
     image: postgres:14
     restart: always
     volumes:
-      - scraper-volume:/var/lib/postgresql/data/
+      - app-volume:/var/lib/postgresql/data/
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_DB=malscrapy-db
@@ -14,7 +14,7 @@ services:
     secrets:
       - postgres_db_password
     networks:
-      - scraper-network
+      - app-network
     ports:
       - "5432:5432"
   pg_admin:
@@ -27,7 +27,7 @@ services:
     secrets:
       - pgadmin_password
     networks:
-      - scraper-network
+      - app-network
     ports:
       - "5431:5431"
   app:
@@ -42,7 +42,7 @@ services:
     secrets:
       - postgres_db_password
     networks:
-      - scraper-network
+      - app-network
     depends_on:
       - postgres_db
 
@@ -53,6 +53,6 @@ secrets:
      file: ./pgadmin_password.txt
 
 networks:
-  scraper-network:
+  app-network:
 volumes:
-  scraper-volume:
+  app-volume:
